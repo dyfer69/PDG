@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Variables</title>
+    <meta charset="utf-8">
+    <link href="{{ STATIC_URL }}CSS/estilos.css" rel="stylesheet" type="text/css">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+     <div id="contenedor">
+      <div id="cabecera">
+        <div id="banner"><img src="{{ STATIC_URL }}media/banner.png" width="1000" height="120" alt=""/></div>
+        <div id="menu"><img src="{{ STATIC_URL }}media/boton.png" width="490" height="35" alt=""/>
+        <img src="{{ STATIC_URL }}media/boton.png" width="490" height="35" alt=""/></div>
+      </div>
+      <div id="contenido">
+        <h1>A continuacion se encuetra la lista de variables que utiliza la herramienta</h1>
+        <form method="POST" action ="/subir/"> {% csrf_token %}
+             <label for="VInstalaciones"> Valor Instalaciones</label>
+             <p><input type="text" name="instalaciones" value="" ></p>
+             <label for="NOperarios"> Numero Operario</label>
+             <p><input type="text" name="operarios" value="" ></p>
+             <label for="TTrabajo"> Turnos de Trabajo </label>
+             <p><input type="text" name="turnosTrabajo" value="" ></p>
+             <label for="Anhos"> Numero de Años de Adquisicion </label>
+             <p><input type="text" name="anosAdquisicionMaquina" value="" ></p>
+             <label for="Anhos"> Porcentaje Seguro (Ej: 0,9) </label>
+             <p><input type="text" name="porcentajeSeguro" value="" ></p>
+             <label for="VMantenimiento"> Valor Mantenimiento </label>
+             <p><input type="text" name="mantenimiento" value="" ></p>
+             <label for="KiloWatts"> Valor KiloWatts </label>
+             <p><input type="text" name="valorKiloWatts" value="" ></p>
+             <label for="CHerramienta"> Costo de la Herramienta </label>
+             <p><input type="text" name="costoHerramienta" value="" ></p>
+             <label for="MaqVida"> Espectativa de Vida de la Maquina (En Hr) </label>
+             <p><input type="text" name="vidaMaquina" value="" ></p>
+             <label for="MaqVida"> Presupuesto Mensual </label>
+             <p><input type="text" name="presupuestoMensual" value="" ></p>
+             <label for="MaqVida"> Costo Anual Servicios </label>
+             <p><input type="text" name="CostoServicios" value="" ></p>
+             <label for="PDisponibilidad"> Porcentaje de Disponibilidad de la Maquina </label>
+             <p><input type="text" name="porcDisponibilidad" value="" ></p>
+             <label for="TPlaneado"> Tiempo Planeado </label>
+             <p><input type="text" name="tiempoPlaneado" value="" ></p>
+             <label for="ECiclo"> Tiempo Estandar de Ciclo </label>
+             <p><input type="text" name="estandarCiclo" value="" ></p>
+             <input type = "submit" name="" value="Actualizar Variables">
+             <br> </br>
+
+        </form>
+      </div>
+      <div id="pie"><img src="{{ STATIC_URL }}media/pie.png" width="1000" height="30" alt=""/></div>
+      </div>
+
+
+</body>

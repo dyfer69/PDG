@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Analizador Sistemas</title>
+    <link href="{{ STATIC_URL }}CSS/estilos.css" rel="stylesheet" type="text/css">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript">
+    function inicio(){
+       $.ajax({
+        url: 'actualizar/',
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function(data) {
+
+        console.log(data);
+        drawChart(data);
+
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+
+    }
+
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1.0', {
+        'packages': ['corechart']
+    });
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1.0', {
+        'packages': ['table']
+    });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart(diccionario) {
+
+
+        // Create the data table.
+        var data1 = new google.visualization.DataTable();
+        var aceptados = diccionario['buenos'];
+        var defectuosos = diccionario['malos'];
+        data1.addColumn('string', 'Topping');
+        data1.addColumn('number', 'Slices');
+        data1.addRows([
+            ['Aceptado', aceptados],
+            ['Defectuoso', defectuosos]
+        ]);
+
+        // Set chart options
+        var options1 = {
+            'title': 'Cantidad Producida',
+            'width': 600,
+            'height': 400
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart1 = new google.visualization.PieChart(document.getElementById('chart_div1'));
+        chart1.draw(data1, options1);
+
+
+        var data2 = new google.visualization.DataTable();
+        data2.addColumn('number', 'X');
+        data2.addColumn('number', 'Tiempo de Ciclo');
+
+        data2.addRows(diccionario['ciclo']);
+
+        var options2 = {
+
+            hAxis: {
+                title: 'Producto'
+            },
+            vAxis: {
+                title: 'Tiempo de Ciclo'
+            }
+        };
+
+        var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+
+        chart2.draw(data2, options2);
+
+
+         var data3 = new google.visualization.DataTable();
+        data3.addColumn('number', 'X');
+        data3.addColumn('number', 'Eficiencia');
+
+        data3.addRows(diccionario['rendimientoU']);
+
+        var options3 = {
+
+            hAxis: {
+                title: 'Time'
+            },
+            vAxis: {
+                title: 'Eficiencia'
+            }
+        };
+
+        var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+
+        chart3.draw(data3, options3);
+
+
+        var data4 = new google.visualization.DataTable();
+        data4.addColumn('string', 'Indicador');
+        data4.addColumn('string', 'Valor');
+
+        data4.addRows([
+          ['Calidad',  diccionario['calidad']],
+          ['Disponibilidad', diccionario['dispo']],
+          ['Rendimiento', diccionario['rendimientoG']]
+
+
+        ]);
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data4, {showRowNumber: true});
+
+        var data5 = new google.visualization.DataTable();
+        data5.addColumn('number', 'X');
+        data5.addColumn('number', 'Costo por Unidad');
+
+        data5.addRows(diccionario['costos']);
+
+        var options5 = {
+
+            hAxis: {
+                title: 'Producto'
+            },
+            vAxis: {
+                title: 'Costo por Unidad'
+            }
+        };
+
+        var chart5 = new google.visualization.LineChart(document.getElementById('chart_div5'));
+
+        chart5.draw(data5, options5);
+
+
+
+    }
+
+
+
+    window.setInterval("inicio()",3000);
+
+    </script>
+</head>
+
+<body>
+    <div id="contenedor">
+      <div id="cabecera">
+        <div id="banner"><img src="{{ STATIC_URL }}media/banner.png" width="1000" height="120" alt=""/></div>
+        <div id="menu"><img src="{{ STATIC_URL }}media/boton.png" width="415" height="35" alt=""/>
+          <input type="button" name="exportar" id="buttonExportar" value="Exportar" onclick= "location.href='exportar/'">
+          <input type="button" name="loggin" id="buttonloggin" value="Log In" onclick= "location.href='login/'">
+        <img src="{{ STATIC_URL }}media/boton.png" width="412" height="35" alt=""/></div>
+      </div>
+      <div id="contenido">
+        <div id="graficaTorta">HOLA {{ user.username }} Total Productos:
+            <!--Div that will hold the pie chart-->
+            <div id="chart_div1"></div>
+        </div>
+        <div id="tablas"> OEE y Costo Actual:
+            <div id="chart_div5"></div>
+            <p>OEE ES :</p>
+            <div id="table_div"></div>
+        </div>
+        <div id="graficoCiclo">Tiempo de Ciclo:
+            <div id="chart_div2"></div>
+        </div>
+        <div id="graficoRendimiento">Rendimiento:
+            <div id="chart_div3"></div>
+        </div>
+
+
+      </div>
+         {% if user.is_authenticated %}
+         Para salir presione <a href="/cerrar"> aqui </a>
+         {% endif %}
+      <div id="pie"><img src="{{ STATIC_URL }}media/pie.png" width="1000" height="30" alt=""/></div>
+    </div>
+</body>
+</html>

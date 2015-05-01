@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link href="{{ STATIC_URL }}CSS/estilos.css" rel="stylesheet" type="text/css">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+     <div id="contenedor">
+      <div id="cabecera">
+        <div id="banner"><img src="{{ STATIC_URL }}media/banner.png" width="1000" height="120" alt=""/></div>
+        <div id="menu"><img src="{{ STATIC_URL }}media/boton.png" width="490" height="35" alt=""/>
+        <img src="{{ STATIC_URL }}media/boton.png" width="490" height="35" alt=""/></div>
+      </div>
+      <div id="contenido">
+        <h1>Por favor es necesario que se autentifique para acceder</h1>
+        <form method="POST" > {% csrf_token %}
+             <p><input type="text" name="username" value="" placeholder="ID de usuario"></p>
+             <p><input type="password" name="password" value="" placeholder="Password"></p>
+             <p class="submit"><input type="submit" name="commit" value="Login"></p>
+        </form>
+      </div>
+      <div id="pie"><img src="{{ STATIC_URL }}media/pie.png" width="1000" height="30" alt=""/></div>
+      </div>
+
+
+</body>
+</html>

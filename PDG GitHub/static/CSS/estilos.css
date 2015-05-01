@@ -1,0 +1,65 @@
+@charset "utf-8";
+#contenedor {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#banner {
+	width: 1000px;
+	height: 120px;
+}
+#buttonExportar {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #1B6F0B;
+	height: 35px;
+	width: 60px;
+	top: 0px;
+	border-radius: 12px;
+	-webkit-box-shadow: 0px 0px #1DF903;
+	box-shadow: 0px 0px #1DF903;
+	background-color: #00F94B;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	margin-top: auto;
+	display: inline-block;
+}
+#buttonloggin {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #1B6F0B;
+	height: 35px;
+	width: 60px;
+	top: 0px;
+	border-radius: 12px;
+	-webkit-box-shadow: 0px 0px #1DF903;
+	box-shadow: 0px 0px #1DF903;
+	background-color: #00F94B;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	margin-top: auto;
+	display: inline-block;
+}
+#graficaTorta {
+	width: 60%;
+}
+#contenedor #contenido #graficaTorta {
+	float: left;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+#tablas {
+	width: 40%;
+	float: right;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+#graficoCiclo {
+	min-width: 0px;
+	width: 50%;
+	float: left;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+#graficoRendimiento {
+	width: 50%;
+	float: right;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
